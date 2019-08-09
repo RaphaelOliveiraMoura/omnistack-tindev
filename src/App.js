@@ -1,7 +1,10 @@
 import React from 'react';
 
+import './App.css';
+import Routes from './routes';
+
 function App() {
-  return <h1>Semana Omnistack</h1>;
+  return <Routes />;
 }
 
 export default App;
