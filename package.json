@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ."
+    "start": "node .",
+    "dev": "nodemon ."
   },
   "repository": {
     "type": "git",
@@ -18,9 +19,11 @@
   },
   "homepage": "https://github.com/RaphaelOliveiraMoura/omnistack8-back-end#readme",
   "dependencies": {
+    "axios": "^0.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
-    "mongoose": "^5.6.9"
+    "mongoose": "^5.6.9",
+    "nodemon": "^1.19.1"
   }
 }
