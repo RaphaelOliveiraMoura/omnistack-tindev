@@ -6,7 +6,13 @@ require('dotenv').config();
 
 const app = express();
 
-mongoose.connect(process.env.MONGO_URL);
+mongoose
+  .connect(process.env.MONGO_URL, {
+    useNewUrlParser: true
+  })
+  .then(() => {
+    console.log('> success to connect with mongodb database');
+  });
 
 app.use(express.json());
 app.use(cors());
