@@ -22,6 +22,22 @@ async function store(request, response) {
   return response.status(201).json(dev);
 }
 
+async function index(request, response) {
+  const { user: loggedDevId } = request.headers;
+  const loggedDev = await Dev.findById(loggedDevId);
+
+  const users = await Dev.find({
+    $and: [
+      { _id: { $ne: loggedDevId } },
+      { _id: { $nin: loggedDev.likes } },
+      { _id: { $nin: loggedDev.dislikes } }
+    ]
+  });
+
+  return response.status(200).json(users);
+}
+
 module.exports = {
+  index,
   store
 };
