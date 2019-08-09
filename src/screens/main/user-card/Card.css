@@ -1,0 +1,52 @@
+.card-container {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.card-container img {
+  max-width: 100%;
+  border-radius: 5px 5px 0 0;
+}
+
+.card-container footer {
+  flex: 1;
+  background-color: #fff;
+  border: 1px solid #eee;
+  padding: 15px 20px;
+  text-align: left;
+  border-radius: 0 0 5px 5px;
+}
+
+.card-container footer strong {
+  font-size: 16px;
+  color: #333;
+}
+
+.card-container footer p {
+  font-size: 14px;
+  line-height: 20px;
+  color: #999;
+  margin-top: 5px;
+}
+
+.card-container .buttons {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+}
+
+.card-container .buttons button {
+  height: 50px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
+  border: 0;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.card-container .buttons button:hover img {
+  transform: translateY(-5px);
+  transition: all 0.2s;
+}

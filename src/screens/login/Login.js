@@ -3,11 +3,21 @@ import React, { useState } from 'react';
 import './Login.css';
 import logo from '../../assets/logo.svg';
 
-export default function Login() {
+import { signIn } from '../../services/api';
+
+export default function Login({ history }) {
   const [username, setUsername] = useState('');
 
   function handleSubmit(event) {
     event.preventDefault();
+    signIn(username)
+      .then(({ data }) => {
+        const { _id } = data;
+        history.push(`/dev/${_id}`);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   return (
