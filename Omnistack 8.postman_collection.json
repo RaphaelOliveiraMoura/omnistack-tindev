@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "308a803a-f044-46c8-a8e2-7398820687f3",
+		"_postman_id": "93ecff3f-a373-46d6-8f86-e297ebb36968",
 		"name": "Omnistack 8",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,6 +14,42 @@
 						"key": "Content-Type",
 						"name": "Content-Type",
 						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"pellizzetti\"\n}"
+				},
+				"url": {
+					"raw": "{{endpoint}}/devs",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"devs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Devs",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "user",
+						"value": "5d4d5fc86fa87426b9fb4a6d",
 						"type": "text"
 					}
 				],
@@ -46,7 +82,7 @@
 					},
 					{
 						"key": "user",
-						"value": "5d4ce262466e332a7c33e846",
+						"value": "5d4d62830f675c2a77e654b6",
 						"type": "text"
 					}
 				],
@@ -55,13 +91,13 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{endpoint}}/devs/5d4ce5bfabc29f2810da8412/likes",
+					"raw": "{{endpoint}}/devs/5d4d62b80f675c2a77e654b7/likes",
 					"host": [
 						"{{endpoint}}"
 					],
 					"path": [
 						"devs",
-						"5d4ce5bfabc29f2810da8412",
+						"5d4d62b80f675c2a77e654b7",
 						"likes"
 					]
 				}
@@ -78,6 +114,11 @@
 						"name": "Content-Type",
 						"type": "text",
 						"value": "application/json"
+					},
+					{
+						"key": "user",
+						"type": "text",
+						"value": "5d4d62830f675c2a77e654b6"
 					}
 				],
 				"body": {
@@ -85,13 +126,13 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{endpoint}}/devs/5d4ce262466e332a7c33e846/dislikes",
+					"raw": "{{endpoint}}/devs/5d4d62b80f675c2a77e654b7/dislikes",
 					"host": [
 						"{{endpoint}}"
 					],
 					"path": [
 						"devs",
-						"5d4ce262466e332a7c33e846",
+						"5d4d62b80f675c2a77e654b7",
 						"dislikes"
 					]
 				}
