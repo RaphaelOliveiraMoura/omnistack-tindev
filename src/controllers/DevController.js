@@ -3,38 +3,85 @@ const github = require('../services/github');
 
 async function store(request, response) {
   const { username } = request.body;
-
-  const userExists = await Dev.findOne({ user: username });
-  if (userExists) {
-    return response.status(200).json(userExists);
+  try {
+    const userExists = await getOneUser({ user: username });
+    if (userExists) return response.status(200).json(userExists);
+    const githubUser = await getUserFromGitHub(username);
+    const dev = await createUser(githubUser);
+    return response.status(201).json(dev);
+  } catch (error) {
+    return response
+      .status(error.status || 500)
+      .json({ error: error.message || 'Internal Server Error' });
   }
-
-  const { data: userData } = await github.getUserFromGitHub(username);
-  const { name, bio, avatar_url: avatar } = userData;
-
-  const dev = await Dev.create({
-    name,
-    user: username,
-    bio,
-    avatar
-  });
-
-  return response.status(201).json(dev);
 }
 
 async function index(request, response) {
   const { user: loggedDevId } = request.headers;
-  const loggedDev = await Dev.findById(loggedDevId);
+  try {
+    const loggedDev = await getUserById(loggedDevId);
+    const users = await getUser({
+      $and: [
+        { _id: { $ne: loggedDevId } },
+        { _id: { $nin: loggedDev.likes } },
+        { _id: { $nin: loggedDev.dislikes } }
+      ]
+    });
+    return response.status(200).json(users);
+  } catch (error) {
+    return response
+      .status(error.status || 500)
+      .json({ error: error.message || 'Internal Server Error' });
+  }
+}
 
-  const users = await Dev.find({
-    $and: [
-      { _id: { $ne: loggedDevId } },
-      { _id: { $nin: loggedDev.likes } },
-      { _id: { $nin: loggedDev.dislikes } }
-    ]
-  });
+async function getOneUser(userProps) {
+  try {
+    return await Dev.findOne(userProps);
+  } catch (error) {
+    throw { status: 500, message: 'Error querrying user in the database' };
+  }
+}
 
-  return response.status(200).json(users);
+async function getUserFromGitHub(username) {
+  try {
+    const { data } = await github.getUserFromGitHub(username);
+    const userExists = !!data;
+    if (!userExists) throw { status: 400, message: 'User dont exists' };
+    const { name, login, bio, avatar_url: avatar } = data;
+    return {
+      name: name || login,
+      user: username,
+      bio,
+      avatar
+    };
+  } catch (error) {
+    throw { status: 500, message: 'Error getting user from github' };
+  }
+}
+
+async function createUser(user) {
+  try {
+    return await Dev.create(user);
+  } catch (error) {
+    throw { status: 500, message: 'Error saving user in database' };
+  }
+}
+
+async function getUser(querry) {
+  try {
+    return await Dev.find(querry);
+  } catch (error) {
+    throw { status: 500, message: 'Error getting user in database' };
+  }
+}
+
+async function getUserById(userId) {
+  try {
+    return await Dev.findById(userId);
+  } catch (error) {
+    throw { status: 500, message: 'Error getting user in database' };
+  }
 }
 
 module.exports = {
