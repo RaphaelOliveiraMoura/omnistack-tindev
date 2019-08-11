@@ -78,7 +78,9 @@ async function getUser(querry) {
 
 async function getUserById(userId) {
   try {
-    return await Dev.findById(userId);
+    const user = await Dev.findById(userId);
+    if (!user) throw { status: 400, message: 'User dont exists' };
+    return user;
   } catch (error) {
     throw { status: 500, message: 'Error getting user in database' };
   }
