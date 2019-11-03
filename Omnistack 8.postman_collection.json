@@ -1,0 +1,173 @@
+{
+	"info": {
+		"_postman_id": "93ecff3f-a373-46d6-8f86-e297ebb36968",
+		"name": "Omnistack 8",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Dev",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"pellizzetti\"\n}"
+				},
+				"url": {
+					"raw": "{{endpoint}}/devs",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"devs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Devs",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "user",
+						"value": "5d4d5fc86fa87426b9fb4a6d",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"diego3g\"\n}"
+				},
+				"url": {
+					"raw": "{{endpoint}}/devs",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"devs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Like",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "user",
+						"value": "5d4d62830f675c2a77e654b6",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{endpoint}}/devs/5d4d62b80f675c2a77e654b7/likes",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"devs",
+						"5d4d62b80f675c2a77e654b7",
+						"likes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dislike",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "user",
+						"type": "text",
+						"value": "5d4d62830f675c2a77e654b6"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{endpoint}}/devs/5d4d62b80f675c2a77e654b7/dislikes",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"devs",
+						"5d4d62b80f675c2a77e654b7",
+						"dislikes"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "d0db2271-074a-4c10-8b2d-3351d3fd400b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "12246a4b-d16c-4ef2-a325-8af509213233",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "66696259-8c10-4c5a-962b-0f1532d9f44f",
+			"key": "endpoint",
+			"value": "http://localhost:5050/api",
+			"type": "string"
+		}
+	]
+}
